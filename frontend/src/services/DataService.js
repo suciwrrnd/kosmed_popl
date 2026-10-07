@@ -152,6 +152,28 @@ class DataService {
     if (item) { item.aktif = !item.aktif; this._saveData(data); }
   }
 
+  updateReminder(id, reminder) {
+
+    const data = this._getData();
+
+    const index = data.reminder.findIndex(r => r.id === id);
+
+    if (index !== -1) {
+
+      data.reminder[index] = {
+
+        ...data.reminder[index],
+
+        ...reminder
+
+      };
+
+      this._saveData(data);
+
+    }
+
+  }
+
   deleteReminder(id) {
     const data = this._getData();
     data.reminder = data.reminder.filter(r => r.id !== id);
